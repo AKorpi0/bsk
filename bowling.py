@@ -1,3 +1,5 @@
+from distributed.utils_test import throws
+
 from bowling_error import BowlingError
 from frame import Frame
 
@@ -5,13 +7,15 @@ from frame import Frame
 class BowlingGame:
 
     def __init__(self):
-        pass
+        self._frames = []
     
     def add_frame(self, frame: Frame) -> None:
-        pass
+        self._frames.append(frame)
 
     def get_frame_at(self, i: int) -> Frame:
-        pass
+        if i >= len(self._frames) or i < 0:
+            raise BowlingError
+        return self._frames[i]
 
     def calculate_score(self) -> int:
         pass
