@@ -26,7 +26,10 @@ class BowlingGame:
         for i, frame in enumerate(self._frames):
             if frame.is_strike() and len(self._frames) > i+1:
                 if self._frames[i+1].is_strike() and len(self._frames) > i+1:
-                    frame.set_bonus(self._frames[i+1].score() + self._frames[i+2].get_first_throw())
+                    if len(self._frames) > i+2:
+                        frame.set_bonus(self._frames[i+1].score() + self._frames[i+2].get_first_throw())
+                    else:
+                        frame.set_bonus(self._frames[i+1].score() + self._first_bonus)
                 else:
                     frame.set_bonus(self._frames[i+1].score())
             if frame.is_spare() and len(self._frames) > i+1:
