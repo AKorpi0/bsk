@@ -9,6 +9,7 @@ class BowlingGame:
     def __init__(self):
         self._frames = []
         self._first_bonus = 0
+        self._second_bonus = 0
     
     def add_frame(self, frame: Frame) -> None:
         if len(self._frames) >= 10:
@@ -33,10 +34,10 @@ class BowlingGame:
             points = frame.score()
 
             score += points
-        return score + self._first_bonus
+        return score + self._first_bonus + self._second_bonus
 
     def set_first_bonus_throw(self, bonus_throw: int) -> None:
         self._first_bonus = bonus_throw
 
     def set_second_bonus_throw(self, bonus_throw: int) -> None:
-        pass
+        self._second_bonus = bonus_throw

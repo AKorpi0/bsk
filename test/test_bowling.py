@@ -165,11 +165,11 @@ class TestBowlingGame(unittest.TestCase):
         game.add_frame(Frame(4,5))
         game.add_frame(Frame(8,1))
         f = Frame(2,8)
-        game.set_first_bonus_throw(7)
         game.add_frame(f)
+        game.set_first_bonus_throw(7)
         self.assertEqual(90, game.calculate_score())
 
-    def test_spare_as_not_last_score(self):
+    def test_strike_as_last_score(self):
         game = BowlingGame()
         game.add_frame(Frame(1,5))
         game.add_frame(Frame(3,6))
@@ -180,7 +180,8 @@ class TestBowlingGame(unittest.TestCase):
         game.add_frame(Frame(3,3))
         game.add_frame(Frame(4,5))
         game.add_frame(Frame(8,1))
-        f = Frame(2,8)
-        game.set_first_bonus_throw(7)
+        f = Frame(10,0)
         game.add_frame(f)
-        self.assertEqual(90, game.calculate_score())
+        game.set_first_bonus_throw(7)
+        game.set_second_bonus_throw(2)
+        self.assertEqual(92, game.calculate_score())
