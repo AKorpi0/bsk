@@ -23,10 +23,12 @@ class BowlingGame:
         score = 0
         spare = False
         strike = False
-        for frame in self._frames:
+        for i, frame in enumerate(self._frames):
             points = frame.score()
             if strike:
-                points = points + frame.score()
+                points += frame.score()
+                if frame.is_strike() and len(self._frames) > i+1:
+                    points += self._frames[i+1].get_first_throw()
                 strike = False
             if spare:
                 points += frame.get_first_throw()
