@@ -67,6 +67,10 @@ class TestBowlingGame(unittest.TestCase):
         game.add_frame(f)
         self.assertEqual(81, game.calculate_score())
 
+    def test_sparescore_of_1_frame(self):
+        game = BowlingGame()
+        game.add_frame(Frame(1,9))
+        self.assertEqual(10, game.calculate_score())
 
     def test_sparescore_of_2_frame(self):
         game = BowlingGame()
