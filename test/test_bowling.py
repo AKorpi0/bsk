@@ -51,3 +51,18 @@ class TestBowlingGame(unittest.TestCase):
         game = BowlingGame()
         game.add_frame(Frame(1,5))
         self.assertEqual(6, game.calculate_score())
+
+    def test_score_of_10_frame(self):
+        game = BowlingGame()
+        game.add_frame(Frame(1,5))
+        game.add_frame(Frame(3,6))
+        game.add_frame(Frame(7,2))
+        game.add_frame(Frame(3,6))
+        game.add_frame(Frame(4,4))
+        game.add_frame(Frame(5,3))
+        game.add_frame(Frame(3,3))
+        game.add_frame(Frame(4,5))
+        game.add_frame(Frame(8,1))
+        f = Frame(2,6)
+        game.add_frame(f)
+        self.assertEqual(81, game.calculate_score())
