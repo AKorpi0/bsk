@@ -21,8 +21,15 @@ class BowlingGame:
 
     def calculate_score(self) -> int:
         score = 0
+        spare = False
         for frame in self._frames:
-            score += frame.get_first_throw()+frame.get_second_throw()
+            framepoints = frame.get_first_throw()+frame.get_second_throw()
+            if spare:
+                framepoints += frame.get_first_throw()
+                spare = False
+            if frame.get_first_throw()+frame.get_second_throw() == 10:
+                spare = True
+            score += framepoints
         return score
 
     def set_first_bonus_throw(self, bonus_throw: int) -> None:
